@@ -4,11 +4,13 @@
 [![License](images/license.svg)](LICENSE)
 
 **Project Description**
+
 This repo contains the lambda function code that can leverage AWS GuardDuty findings to prevent 
 malicious IPs and domains from accessing your AWS hosted applications by using threat intel 
 from the GuardDuty findings and using it to complement Illumio policy rules
 
 **Project Technology stack** 
+
 The AWS lambda function is written in python3.6 and uses the same runtime in AWS Lambda
 For more details on python3.6 runtime - please visit https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html 
 
