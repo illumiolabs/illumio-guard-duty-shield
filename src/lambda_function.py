@@ -40,7 +40,7 @@ def pce_request(pce, org_id, key, secret, verb, path, params=None,
 # UnauthorizedAccess:EC2/SSHBruteForce and Recon:EC2/PortProbeUnprotectedPort
 def get_malicious_ip(event):
     malicious_ips = []
-    if event.get('source') == "aws.guardduty":
+    if event.get('source') == 'aws.guardduty':
         if event.get('detail').get('type') == 'UnauthorizedAccess:EC2/SSHBruteForce':
             if event.get('detail').get('service').get('action').get('networkConnectionAction').get('remoteIpDetails').get('ipAddressV4') is not None:
                 malicious_ip = event.get('detail').get('service').get('action').get('networkConnectionAction').get('remoteIpDetails').get('ipAddressV4')
