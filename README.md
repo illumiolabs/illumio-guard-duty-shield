@@ -5,15 +5,16 @@
 
 **Project Description**
 
-This repo contains the lambda function code that can leverage AWS GuardDuty findings to prevent
-malicious IPs and domains from accessing your AWS hosted applications by using threat intel
-from the GuardDuty findings and using it to complement Illumio policy rules
+This repo provides an AWS Lambda container-based application designed to monitor
+AWS GuardDuty for malicious IPs, and imports them into an Illumio PCE IP list.
+This allows Illumio customers to prevent malicious IPs and domains from accessing
+AWS-hosted applications by using threat intel from GuardDuty findings to
+complement Illumio policy rules.
 
 **Project Technology stack**
 
-The AWS lambda function is written in python3.6 and uses the same runtime in AWS Lambda
-For more details on python3.6 runtime - please visit https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
-
+The application is written in Python 3.8 and is designed to be run as a containerized AWS Lambda function.
+For more details on Lambda container images please visit https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html
 
 **Project workflow**
 
@@ -22,14 +23,14 @@ For more details on python3.6 runtime - please visit https://docs.aws.amazon.com
 
 ## Installation
 
-Detailed instructions on how to install, configure, and get the project running are mentioned
-in [INSTALL](INSTALL.md) document.
+Detailed instructions on how to quickly deploy the Lambda container are located
+in the [INSTALL](INSTALL.md) document.
 
 ## Support
 
-The AWS Lambda Function is released and distributed as open source software subject to the
+The AWS Lambda container is released and distributed as open source software subject to the
 [LICENSE](LICENSE). Illumio has no obligation or responsibility related to the AWS Lambda
-Function with respect to support, maintenance, availability, security or otherwise. Please
+container with respect to support, maintenance, availability, security or otherwise. Please
 read the entire [LICENSE](LICENSE) for additional information regarding the permissions and
 limitations. You can engage with the author & contributors team and community on SLACK.
 
@@ -44,5 +45,4 @@ Instructions on how to contribute:  [CONTRIBUTING](CONTRIBUTING.md).
 
 ## Links
 
- * Screencast demonstrating the project https://labs.illumio.com/extending-aws-guardduty-to-shield-your-cloud-deployment-from-attacks
  * Illumio documentation page for configuring Illumio ASP https://support.illumio.com/public/documentation/index.html

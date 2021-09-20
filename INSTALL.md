@@ -1,31 +1,46 @@
-README file for Illumio Guard Duty Integration
+# Install instructions for Illumio Guard Duty Shield
+Illumio has provided several deployment methods, the easiest of which is with the
+included AWS Cloudformation yaml template. You can also choose to install this via
+the AWS Management Console.
 
-1. Navigate to AWS Lambda service and click Create the new function button on the top right corner
-1. Choose the option to Author from scratch
-1. Give the Function Name as Illumio-Guard-Duty-Shield
-1. Choose the Runtime as Python3.6
-1. For the Execution role, select Create a new role with Basic Lambda permissions and then hit Create Function Button at the bottom right
-1. The Lambda function is created. Before we proceed, we need to go to CloudWatch service in order to create the CloudWatch Events trigger for the Lambda function
-1. On the CloudWatch Events page, Click Rules in the left side pane and then click Create Rule.
-1. In the Event source, Select Service Name as GuardDuty from the drop down menu
-1. In the Event type, select the All Events from the Drop down menu
-1. On the right side, click Add Target and then Select Lambda Function from the drop down menu
-1. In the Function field, select Illumio-Guard-Duty-Shield from the drop down menu and then click configure details button on the right side.
-1. On the next page, Give the name for the rule as IllumioGuardDutyRule and also add a description for the same and then click Create Rule on the right side.
-1. Now, we will go to the AWS Lambda function Illumio-Guard-Duty-Shield and add CloudWatch Events from the right hand side as a Trigger
-1. This will open up a Rule field where we will select the IllumioGuardDutyRule from the drop down menu and click the Add button
-1. Now, We will click on the Illumio-Guard-Duty-Shield with Lambda icon above the Layers and that will open up the function code editor
-1. In this editor, copy the code from the lambda_function.py file in this repo and paste it in the editor window
-1. Now, Scroll below and in the Environment variables section, add the following keys and their corresponding values based on your Illumio environment:
-   1. ILLUMIO_SERVER - Value should be the Illumio PCE URL without any https
-   1. ILO_API_KEY_ID - The API key id for the Lambda function to use
-   1. ILO_API_KEY_SECRET - The API key secret for the Lambda function to use
-   1. ILO_API_VERSION - Version of Illumio API
-   1. ILO_ORG_ID - Illumio PCE Org ID to be utilized for this deployment
-   1. ILO_PORT - Illumio PCE port for the Lambda to communicate for the API calls
-   1. THREAT_LIST_KEY - Numerical Id for the IP list to be updated on the PCE
-1. The threat list key for a iplist can be obtained from the PCE as shown in the following image:
-   ![](images/threat-list-key.jpg)
-1. Scroll to the end of the Lambda function page to the Concurrency setting, Set Reserve Concurrency to 1 and then hit Save button at the top Right corner to Save the Lambda function
-1. This completes the configuration and creation of the Lambda function on the AWS portal
-1. You can now monitor the CloudWatch Log stream to see the logs generate at the time of function execution
+## CloudFormation
+This template will create an IAM role with minimal permissions, a Lambda function
+with the Illumio Guard Duty Shield container, and  CloudWatch Event rule.
+
+You must first have the AWS CLI installed on your local system.
+[Click here](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
+for install instructions.
+
+You can deploy these configurations from the repository's root with this command:
+
+```console
+aws cloudformation deploy --template-file src/illumio-Guard-Duty-Shield.yaml --stack-name illumio-guard-duty-shield --capabilities CAPABILITY_NAMED_IAM
+```
+
+## AWS Management Console
+If you wish to click through the install, instructions are included below.
+
+1. Navigate to the AWS Lambda service and click the orange **Create function** button in the top right corner
+1. Select **Container image** to deploy a container-based Lambda function
+1. Provide a Function Name, such as `Illumio-Guard-Duty-Shield`
+1. Enter the Illumio Guard Duty Shield Container image URI:
+   `{URI_PLACEHOLDER}`
+1. Click **Create Function** at the bottom right
+1. You will be directed to the *Illumio-Guard-Duty-Shield*'s Function overview page
+1. Select the **Configuration** tab towards the bottom of the page, and then **Environment variables**
+1. Create the following Environmental variables by clicking **Edit** and **Add environment variable**
+   * ILLUMIO_SERVER - Value should be the Illumio PCE URL without any https
+   * ILO_API_KEY_ID - The API key id for the Lambda function to use
+   * ILO_API_KEY_SECRET - The API key secret for the Lambda function to use
+   * ILO_API_VERSION - Version of Illumio API
+   * ILO_ORG_ID - Illumio PCE Org ID to be utilized for this deployment
+   * ILO_PORT - Illumio PCE port for the Lambda to communicate for the API calls
+   * THREAT_LIST_KEY - Numerical Id for the IP list to be updated on the PCE, which can be obtained from the PCE as shown in [this image](images/threat-list-key.jpg)
+1. Once you have added values for each of these variables, click the orage **Save** button at he bottom right
+1. We will need to create a CloudWatch Rule for this, so navigate to the AWS CloudWatch service
+1. On the left side of the screen click **Rules** under Events
+1. Click **Create rule** and under Event Source select GuardDuty as the Sevice Name
+1. Click **Add target** to the right, and select **Illumio-Guard-Duty-Shield** as the Lambda Function
+1. Click **Configure details** at the bottom right of the page and
+1. Provide a Rule Name, such as `IllumioGuardDutyRule` and click **Create rule**
+1. If you return to the Illumio-Guard-Duty-Shield Lambda function we created earlier, you will see an EventBridge (CloudWatch Events) has been added to the triggers.
