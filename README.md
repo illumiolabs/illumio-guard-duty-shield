@@ -5,7 +5,7 @@
 
 **Project Description**
 
-This repo provides an AWS Lambda container-based application designed to monitor
+This repo provides an AWS Lambda function designed to monitor
 AWS GuardDuty for malicious IPs, and imports them into an Illumio PCE IP list.
 This allows Illumio customers to prevent malicious IPs and domains from accessing
 AWS-hosted applications by using threat intel from GuardDuty findings to
