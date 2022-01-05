@@ -6,15 +6,15 @@
 **Project Description**
 
 This repo provides an AWS Lambda function designed to monitor
-AWS GuardDuty for malicious IPs, and imports them into an Illumio PCE IP list.
+AWS GuardDuty for malicious IPs, and import them into an Illumio PCE IP list.
 This allows Illumio customers to prevent malicious IPs and domains from accessing
 AWS-hosted applications by using threat intel from GuardDuty findings to
 complement Illumio policy rules.
 
 **Project Technology stack**
 
-The application is written in Python 3.8 and is designed to be run as a containerized AWS Lambda function.
-For more details on Lambda container images please visit https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html
+The application is written for Python 3.6+ and is designed to be run as an AWS Lambda function.
+For more details on packging Lambda functions please visit https://docs.aws.amazon.com/lambda/latest/dg/lambda-functions.html
 
 **Project workflow**
 
