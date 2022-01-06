@@ -14,11 +14,11 @@
 
 FROM public.ecr.aws/lambda/python:3.9
 
-MAINTAINER labs@illumio.com
+WORKDIR ${LAMBDA_TASK_ROOT}
 
 COPY src/app/requirements.txt  .
-COPY src/app/lambda_function.py ${LAMBDA_TASK_ROOT}
+COPY src/app/lambda_function.py .
 
-RUN  pip3 install -r requirements.txt --target "${LAMBDA_TASK_ROOT}"
+RUN  pip3 install  --no-cache-dir -r requirements.txt --target "${LAMBDA_TASK_ROOT}"
 
 CMD [ "lambda_function.lambda_handler" ]
