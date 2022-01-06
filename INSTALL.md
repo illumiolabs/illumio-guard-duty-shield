@@ -17,7 +17,6 @@ cd ./illumio-guard-duty-shield
 ```bash
 docker build -t illumio-guard-duty-shield:latest -f src/Docker/Dockerfile .
 ```
-
 1. Create a new ECR repo and push the image. Substitute your accountID and region where required
 ```bash
 aws ecr create-repository --region <region> --repository-name illumio-guard-duty-shield --image-scanning-configuration scanOnPush=true
@@ -25,7 +24,6 @@ docker tag illumio-guard-duty-shield:latest <accountID>.dkr.ecr.<region>.amazona
 aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <accountID>.dkr.ecr.<region>.amazonaws.com
 docker push <accountID>.dkr.ecr.<region>.amazonaws.com/illumio-guard-duty-shield:latest
 ```
-
 1. You can automate the final steps by using the included CloudFormation template
 to complete the following steps:
   1. Edit the src/Docker/illumio-Guard-Duty-Shield-Docker.yaml file with your relevant variables
