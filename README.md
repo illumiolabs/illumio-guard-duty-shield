@@ -13,8 +13,8 @@ complement Illumio policy rules.
 
 **Project Technology stack**
 
-The application is written for Python 3.6+ and is designed to be run as an AWS Lambda function.
-For more details on packging Lambda functions please visit https://docs.aws.amazon.com/lambda/latest/dg/lambda-functions.html
+The application is written for Python 3 and tested up to v3.9; it is designed to be run as an AWS Lambda function as a container or loaded into the Python runtime.
+For more details on packaging Lambda functions please visit https://docs.aws.amazon.com/lambda/latest/dg/lambda-functions.html
 
 **Project workflow**
 
@@ -23,7 +23,7 @@ For more details on packging Lambda functions please visit https://docs.aws.amaz
 
 ## Installation
 
-Detailed instructions on how to quickly deploy the Lambda container are located
+Detailed instructions on how to deploy the Lambda container are located
 in the [INSTALL](INSTALL.md) document.
 
 ## Support
@@ -36,7 +36,8 @@ limitations. You can engage with the author & contributors team and community on
 
 ## Help or Docs
 
-If you have questions, please use slack for asking them.
+You can visit us at https://labs.illumio.com
+If you have questions, please use slack or email to contact us directly.
 If you have issues, bug reports, etc, please file an issue in this repository's Issue Tracker.
 
 ## Contributing

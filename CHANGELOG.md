@@ -1,3 +1,16 @@
+## 2022-01-04
+
+### Added
+* Separate zip and Docker instructions
+* Added separate zip and docker cloudformation templates
+
+### Fixed
+- updated to Python 3.9.
+- adjusted folder hierarchy
+
+### Removed
+- Nothing.
+
 ## 2021-09-20
 
 ### Added

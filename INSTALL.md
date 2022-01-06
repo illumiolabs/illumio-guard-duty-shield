@@ -1,7 +1,7 @@
 # Install instructions for Illumio Guard Duty Shield
 Illumio has provided two deployment methods, either as a container using
 the included Dockerfile, or as a .zip file. These instructions are intended for
-a Unix-type system, such as Linux or MacOS.
+a Unix-type system, such as Linux or macOS.
 
 ## Docker Container
 These instructions require that [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git),
@@ -45,14 +45,14 @@ to complete the following steps:
 1. You will be directed to the *Illumio-Guard-Duty-Shield*'s Function overview page
 1. Select the **Configuration** tab towards the bottom of the page, and then **Environment variables**
 1. Create the following Environmental variables by clicking **Edit** and **Add environment variable**
-   * ILLUMIO_SERVER - Value should be the Illumio PCE URL without any https
-   * ILO_API_KEY_ID - The API key id for the Lambda function to use
-   * ILO_API_KEY_SECRET - The API key secret for the Lambda function to use
-   * ILO_API_VERSION - Version of Illumio API
-   * ILO_ORG_ID - Illumio PCE Org ID to be utilized for this deployment
-   * ILO_PORT - Illumio PCE port for the Lambda to communicate on
-   * THREAT_LIST_KEY - Numerical Id for the IP list to be updated on the PCE, which can be obtained from the PCE as shown in [this image](images/threat-list-key.jpg)
-1. Once you have added values for each of these variables, click the orage **Save** button at the bottom right
+  * ILLUMIO_SERVER - The Illumio PCE hostname (ex. illumiopce.company.com)
+  * ILO_API_KEY_ID - The API key id
+  * ILO_API_KEY_SECRET - The API key secret
+  * ILO_API_VERSION - Version of Illumio API
+  * ILO_ORG_ID - Illumio PCE Org ID to be utilized for this deployment
+  * ILO_PORT - Illumio PCE port
+  * THREAT_LIST_KEY - Numerical href id of the IP list to be updated. It is found in the URL as seen in [this image](images/threat-list-key.jpg)
+1. Once you have added values for each of these variables, click the orange **Save** button at the bottom right
 1. We will need to create a CloudWatch Rule for this, so navigate to the AWS CloudWatch service
 1. On the left side of the screen click **Rules** under Events
 1. Click **Create rule** and under Event Source select GuardDuty as the Sevice Name
@@ -113,13 +113,13 @@ and an S3 bucket to complete the following steps:
 1. Click **Upload** and choose the illumio-guard-duty-shield.zip file created in the src/zip folder
 1. Next, click the **Configuration** tab, and then **Environment variables**
 1. Create the following Environmental variables by clicking **Edit** and **Add environment variable**
-   * ILLUMIO_SERVER - Value should be the Illumio PCE URL without any https
-   * ILO_API_KEY_ID - The API key id without the prefix 'api_' for the Lambda function to use
-   * ILO_API_KEY_SECRET - The API key secret for the Lambda function to use
-   * ILO_API_VERSION - Version of Illumio API to use
-   * ILO_ORG_ID - Illumio PCE Org ID to be utilized for this deployment
-   * ILO_PORT - Illumio PCE port for the Lambda to communicate on
-   * THREAT_LIST_KEY - Numerical Id for the IP list to be updated on the PCE, which can be obtained from the PCE as shown in [this image](images/threat-list-key.jpg)
+* ILLUMIO_SERVER - The Illumio PCE hostname (ex. illumiopce.company.com)
+* ILO_API_KEY_ID - The API key id
+* ILO_API_KEY_SECRET - The API key secret
+* ILO_API_VERSION - Version of Illumio API
+* ILO_ORG_ID - Illumio PCE Org ID to be utilized for this deployment
+* ILO_PORT - Illumio PCE port
+* THREAT_LIST_KEY - Numerical href id of the IP list to be updated. It is found in the URL as seen in [this image](images/threat-list-key.jpg)
 1. Once you have added values for each of these variables, click the orange **Save** button at the bottom right
 
 
@@ -134,34 +134,3 @@ aws cloudformation deploy --template-file src/zip/illumio-Guard-Duty-Shield_dev.
 
 
 aws cloudformation package --template-file src/zip/illumio-Guard-Duty-Shield.yaml --stack-name illumio-guard-duty-shield --capabilities CAPABILITY_NAMED_IAM
-
-
-
-?????????????????????????
-
-If you wish to click through the install, instructions are included below.
-
-1. Navigate to the AWS Lambda service and click the orange **Create function** button in the top right corner
-1. Select **Container image** to deploy a container-based Lambda function
-1. Provide a Function Name, such as `Illumio-Guard-Duty-Shield`
-1. Enter the Illumio Guard Duty Shield Container image URI:
-   `{URI_PLACEHOLDER}`
-1. Click **Create Function** at the bottom right
-1. You will be directed to the *Illumio-Guard-Duty-Shield*'s Function overview page
-1. Select the **Configuration** tab towards the bottom of the page, and then **Environment variables**
-1. Create the following Environmental variables by clicking **Edit** and **Add environment variable**
-   * ILLUMIO_SERVER - Value should be the Illumio PCE URL without any https
-   * ILO_API_KEY_ID - The API key id for the Lambda function to use
-   * ILO_API_KEY_SECRET - The API key secret for the Lambda function to use
-   * ILO_API_VERSION - Version of Illumio API
-   * ILO_ORG_ID - Illumio PCE Org ID to be utilized for this deployment
-   * ILO_PORT - Illumio PCE port for the Lambda to communicate on
-   * THREAT_LIST_KEY - Numerical Id for the IP list to be updated on the PCE, which can be obtained from the PCE as shown in [this image](images/threat-list-key.jpg)
-1. Once you have added values for each of these variables, click the orage **Save** button at the bottom right
-1. We will need to create a CloudWatch Rule for this, so navigate to the AWS CloudWatch service
-1. On the left side of the screen click **Rules** under Events
-1. Click **Create rule** and under Event Source select GuardDuty as the Sevice Name
-1. Click **Add target** to the right, and select **Illumio-Guard-Duty-Shield** as the Lambda Function
-1. Click **Configure details** at the bottom right of the page and
-1. Provide a Rule Name, such as `IllumioGuardDutyRule` and click **Create rule**
-1. If you return to the Illumio-Guard-Duty-Shield Lambda function we created earlier, you will see an EventBridge (CloudWatch Events) has been added to the triggers.
