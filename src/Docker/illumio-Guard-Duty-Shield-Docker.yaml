@@ -1,4 +1,4 @@
-#   Copyright 2019 Illumio, Inc.
+#   Copyright 2022 Illumio, Inc.
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -13,37 +13,32 @@
 #   limitations under the License.
 
 # This yaml defines the template for Illumio Guard Duty Shield Lambda function
+
+
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
-Description: An AWS Serverless Specification template describing your function.
+Description: This deploys Illumio Guard Duty Shield as a Lambda function.
 Resources:
   illumioGuardDutyShield:
     Type: 'AWS::Serverless::Function'
     Properties:
-      Handler: lambda_function.lambda_handler
-      Runtime: python3.6
-      CodeUri: .
-      Description: ''
-      MemorySize: 128
-      Timeout: 3
-      Role: >-
-        arn:aws:iam::<Basic Lambda Exccution role with Permissions to create Cloudwatch Log streams>
+      FunctionName: illumio-guard-duty-shield
+      PackageType: Image
+      ImageUri: <Illumio Guard Duty Shield ECR Image URL>
       Events:
-        CloudWatchEvent1:
+        GuardDutyEvent:
           Type: CloudWatchEvent
           Properties:
             Pattern:
-              detail-type:
-                - GuardDuty Finding
               source:
                 - aws.guardduty
       Environment:
         Variables:
-          ILLUMIO_SERVER: <Illumio PCE URL>
-          ILO_API_KEY_ID: <Illumio API KEY ID>
-          ILO_API_KEY_SECRET: <Illumio API KEY Secret> 
+          ILLUMIO_SERVER: <Illumio PCE URL> # The Illumio PCE hostname (ex. illumiopce.company.com)
+          ILO_API_KEY_ID: <Illumio API KEY ID> # The API id without the prefix 'api_'
+          ILO_API_KEY_SECRET: <Illumio API KEY Secret> # The API key secret
           ILO_API_VERSION: '2'
-          ILO_ORG_ID: <Illumio ORG ID> #String
-          ILO_PORT: <Illumio PCE Port> #String
-          THREAT_LIST_KEY: <Key for the Threat list> #If the threat list href is iplists/100 then the key is 100
+          ILO_ORG_ID: <Illumio ORG ID> # Illumio PCE Org ID
+          ILO_PORT: <Illumio PCE Port> # Illumio PCE port
+          THREAT_LIST_KEY: <Threat list ID> # If the IP list href is iplists/100 then the key is 100
       ReservedConcurrentExecutions: 1 #In order to avoid multiple concurrent calls with duplicate malicious IPs to the PCE

@@ -5,15 +5,16 @@
 
 **Project Description**
 
-This repo contains the lambda function code that can leverage AWS GuardDuty findings to prevent
-malicious IPs and domains from accessing your AWS hosted applications by using threat intel
-from the GuardDuty findings and using it to complement Illumio policy rules
+This repo provides an AWS Lambda Function designed to monitor
+AWS GuardDuty for malicious IPs, and import them into an Illumio PCE IP list.
+This allows Illumio customers to prevent malicious IPs and domains from accessing
+AWS-hosted applications by using threat intel from GuardDuty findings to
+complement Illumio policy rules.
 
 **Project Technology stack**
 
-The AWS lambda function is written in python3.6 and uses the same runtime in AWS Lambda
-For more details on python3.6 runtime - please visit https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
-
+The application is written for Python 3 and tested up to v3.9; it is designed to be run as an AWS Lambda function as a container or loaded into the Python runtime.
+For more details on packaging Lambda functions please visit https://docs.aws.amazon.com/lambda/latest/dg/lambda-functions.html
 
 **Project workflow**
 
@@ -22,8 +23,8 @@ For more details on python3.6 runtime - please visit https://docs.aws.amazon.com
 
 ## Installation
 
-Detailed instructions on how to install, configure, and get the project running are mentioned
-in [INSTALL](INSTALL.md) document.
+Detailed instructions on how to deploy the Lambda Function are located
+in the [INSTALL](INSTALL.md) document.
 
 ## Support
 
@@ -35,7 +36,8 @@ limitations. You can engage with the author & contributors team and community on
 
 ## Help or Docs
 
-If you have questions, please use slack for asking them.
+You can visit us at https://labs.illumio.com
+If you have questions, please use slack or email to contact us directly.
 If you have issues, bug reports, etc, please file an issue in this repository's Issue Tracker.
 
 ## Contributing
@@ -44,5 +46,4 @@ Instructions on how to contribute:  [CONTRIBUTING](CONTRIBUTING.md).
 
 ## Links
 
- * Screencast demonstrating the project https://labs.illumio.com/extending-aws-guardduty-to-shield-your-cloud-deployment-from-attacks
  * Illumio documentation page for configuring Illumio ASP https://support.illumio.com/public/documentation/index.html

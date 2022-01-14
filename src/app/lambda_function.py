@@ -1,4 +1,4 @@
-#   Copyright 2019 Illumio, Inc.
+#   Copyright 2022 Illumio, Inc.
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -14,8 +14,7 @@
 
 
 import os
-from botocore.vendored import requests
-
+import requests
 
 # PCE API request call using requests module
 def pce_request(pce, org_id, key, secret, verb, path, params=None,
@@ -45,7 +44,7 @@ def get_malicious_ip(event):
         if event.get('detail').get('type') == 'UnauthorizedAccess:EC2/SSHBruteForce':
             if event.get('detail').get('service').get('action').get('networkConnectionAction').get('remoteIpDetails').get('ipAddressV4') is not None:
                 malicious_ip = event.get('detail').get('service').get('action').get('networkConnectionAction').get('remoteIpDetails').get('ipAddressV4')
-                print('Malicious IP is' + str(malicious_ip))
+                print('Malicious IP is ' + str(malicious_ip))
                 malicious_ips.append(malicious_ip)
         elif event.get('detail').get('type') == 'Recon:EC2/PortProbeUnprotectedPort':
             print(event.get('detail').get('service').get('additionalInfo').get('threatListName'))
